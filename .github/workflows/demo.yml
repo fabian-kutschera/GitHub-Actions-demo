@@ -16,11 +16,15 @@ jobs:
           python-version: '3.10'
       - name: Run script
         run: python add_time.py
-      - name: Push changes to GitHub
-        uses: actions/github-script@v4
-        with:
-          github-token: ${{ secrets.DEMO_WORKFLOW }}
-          script: |
-            git add .
-            git commit -m "Update at $(date +%Y-%m-%d %H:%M:%S)"
-            git push
+      - name: Setup git config
+        run: |
+          # Setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
+          # Inspired by https://lannonbr.com/blog/2019-12-09-git-commit-in-actions/
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+      - name: Commit
+        run: |
+          # Stage the file, commit and push
+          git add .
+          git commit -m "'date'"
+          git push
