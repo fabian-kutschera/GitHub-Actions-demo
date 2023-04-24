@@ -1,1 +1,23 @@
+name: demo
 
+on:
+  schedule:
+  - cron: "*/15 * * * *"
+  
+jobs:
+  add-time:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+      - name: Run script
+        run: python add_time.py
+      - name: Checkout Repository
+        run: |
+          git add .
+          git config --local user.email "f.kutschera@campus.lmu.de"
+          git config --local user.name "fabian-kutschera"
+          git commit -m "Add time $(date +%Y-%m-%d %H:%M:%S)"
+          git push
