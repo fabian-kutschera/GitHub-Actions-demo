@@ -25,6 +25,8 @@ jobs:
       - name: Commit
         run: |
           # Stage the file, commit and push
+          # Timestamp inspired by https://askubuntu.com/questions/991712/get-current-date-and-time-to-commit-message-to-git
+          timestamp=$(date +"%D %T")
           git add .
-          git commit -m "'date'"
+          git commit -m "Update on $timestamp"
           git push
