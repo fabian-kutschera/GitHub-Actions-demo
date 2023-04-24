@@ -1,3 +1,3 @@
- f = open("demofile.txt", "r")
- f.write("Hello World!")
- f.close()
+f = open("demofile.txt", "r")
+f.write("Hello World!")
+f.close()
